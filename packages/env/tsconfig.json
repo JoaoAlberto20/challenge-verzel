@@ -1,0 +1,6 @@
+{
+  "extends": "@carhub/tsconfig/lib.json",
+  "include": [
+    "index.ts"
+  ]
+}

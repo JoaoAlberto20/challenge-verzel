@@ -1,0 +1,30 @@
+{
+  "name": "api",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm run env:load tsx watch src/http/server.ts",
+    "lint": "eslint .",
+    "env:load": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "fastify": "^4.27.0"
+  },
+  "devDependencies": {
+    "@carhub/env": "*",
+    "@carhub/eslint-config": "*",
+    "@carhub/prettier": "*",
+    "@carhub/tsconfig": "*",
+    "@types/node": "^20.12.12",
+    "dotenv-cli": "^7.4.2",
+    "prisma": "^5.14.0",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@carhub/eslint-config/node"
+    ]
+  },
+  "prettier": "@carhub/prettier"
+}

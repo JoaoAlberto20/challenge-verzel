@@ -1,0 +1,23 @@
+{
+  "name": "@carhub/env",
+  "private": true,
+  "version": "0.0.0",
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "@t3-oss/env-nextjs": "^0.10.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@carhub/eslint-config": "*",
+    "@carhub/prettier": "*",
+    "@carhub/tsconfig": "*",
+    "@types/node": "^20.12.12"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@carhub/eslint-config/lib"
+    ]
+  },
+  "prettier": "@carhub/prettier"
+}
