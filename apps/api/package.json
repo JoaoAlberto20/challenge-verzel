@@ -4,10 +4,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "npm run env:load tsx watch src/http/server.ts",
+    "db:migrate": "npm run env:load prisma migrate dev",
     "lint": "eslint .",
     "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@prisma/client": "^5.14.0",
     "fastify": "^4.27.0"
   },
   "devDependencies": {
