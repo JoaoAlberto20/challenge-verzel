@@ -9,24 +9,25 @@
     "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/jwt": "^8.0.1",
+    "@fastify/swagger": "^8.14.0",
+    "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "^5.14.0",
-    "fastify": "^4.27.0"
+    "bcryptjs": "^2.4.3",
+    "fastify": "^4.27.0",
+    "fastify-type-provider-zod": "^1.2.0"
   },
   "devDependencies": {
     "@carhub/env": "*",
     "@carhub/eslint-config": "*",
     "@carhub/prettier": "*",
     "@carhub/tsconfig": "*",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.12.12",
     "dotenv-cli": "^7.4.2",
     "prisma": "^5.14.0",
     "tsx": "^4.11.0",
     "typescript": "^5.4.5"
-  },
-  "eslintConfig": {
-    "extends": [
-      "@carhub/eslint-config/node"
-    ]
-  },
-  "prettier": "@carhub/prettier"
+  }
 }

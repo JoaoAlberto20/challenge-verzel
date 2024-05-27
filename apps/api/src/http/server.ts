@@ -1,10 +1,60 @@
-import Fastify from 'fastify'
 import { env } from '@carhub/env'
+import fastifyCors from '@fastify/cors'
+import fastifyJwt from '@fastify/jwt'
+import fastifySwagger from '@fastify/swagger'
+import fastifySwaggerUI from '@fastify/swagger-ui'
+import fastify from 'fastify'
+import {
+  jsonSchemaTransform,
+  serializerCompiler,
+  validatorCompiler,
+  ZodTypeProvider,
+} from 'fastify-type-provider-zod'
 
-const fastify = Fastify({
-  logger: true,
+import { errorHandler } from './middlewares/error-handler'
+import { authenticateWithPassword } from './routes/auth/authenticate'
+import { createAccount } from './routes/auth/create-account'
+
+const app = fastify().withTypeProvider<ZodTypeProvider>()
+
+app.setSerializerCompiler(serializerCompiler)
+app.setValidatorCompiler(validatorCompiler)
+
+app.setErrorHandler(errorHandler)
+
+app.register(fastifySwagger, {
+  openapi: {
+    info: {
+      title: 'Next.js SaaS',
+      description: 'Full-stack SaaS with multi-tenant & RBAC.',
+      version: '1.0.0',
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+  },
+  transform: jsonSchemaTransform,
 })
 
-fastify.listen({ port: env.SERVER_PORT }).then(() => {
+app.register(fastifySwaggerUI, {
+  routePrefix: '/docs',
+})
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+})
+
+app.register(fastifyCors)
+
+app.register(createAccount)
+app.register(authenticateWithPassword)
+
+app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('HTTP server running!')
 })
