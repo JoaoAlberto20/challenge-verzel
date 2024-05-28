@@ -23,3 +23,19 @@ model User {
 
   @@map("users")
 }
+
+model Car {
+  id             String @id @default(cuid())
+  name           String
+  description    String
+  slug           String @unique
+  brand          String
+  model          String
+  image_url      String
+  year           Int
+  location       String
+  mileage        Int
+  original_value String
+
+  @@map("cars")
+}

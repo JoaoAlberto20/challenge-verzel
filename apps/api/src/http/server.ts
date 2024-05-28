@@ -14,6 +14,10 @@ import {
 import { errorHandler } from './middlewares/error-handler'
 import { authenticateWithPassword } from './routes/auth/authenticate'
 import { createAccount } from './routes/auth/create-account'
+import { createCar } from './routes/cars/create-car'
+import { deleteCar } from './routes/cars/delete-car'
+import { getCar } from './routes/cars/get-car'
+import { getCars } from './routes/cars/get-cars'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -54,6 +58,11 @@ app.register(fastifyCors)
 
 app.register(createAccount)
 app.register(authenticateWithPassword)
+
+app.register(createCar)
+app.register(getCar)
+app.register(getCars)
+app.register(deleteCar)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('HTTP server running!')

@@ -18,11 +18,12 @@ export async function createAccount(app: FastifyInstance) {
           name: z.string(),
           email: z.string().email(),
           password: z.string().min(6),
+          role: z.string(z.enum(['ADMIN', 'CLIENT'])).optional(),
         }),
       },
     },
     async (request, reply) => {
-      const { name, email, password } = request.body
+      const { name, email, password, role } = request.body
 
       const userWithSameEmail = await prisma.user.findUnique({
         where: {
@@ -42,6 +43,7 @@ export async function createAccount(app: FastifyInstance) {
           name,
           email,
           password: passwordHash,
+          role,
         },
       })
 
