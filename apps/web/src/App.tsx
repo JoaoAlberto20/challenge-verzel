@@ -1,5 +1,17 @@
+import { QueryClientProvider } from '@tanstack/react-query'
+import { RouterProvider } from 'react-router-dom'
+import { Toaster } from 'sonner'
+
+import { queryClient } from './lib/react-query'
+import { router } from './routes'
+
 function App() {
-  return <div>ola mundo</div>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <Toaster richColors />
+    </QueryClientProvider>
+  )
 }
 
 export default App
