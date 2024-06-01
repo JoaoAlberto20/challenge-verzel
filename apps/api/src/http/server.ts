@@ -29,8 +29,8 @@ app.setErrorHandler(errorHandler)
 app.register(fastifySwagger, {
   openapi: {
     info: {
-      title: 'Next.js SaaS',
-      description: 'Full-stack SaaS with multi-tenant & RBAC.',
+      title: 'Desafio Venda de Carros API',
+      description: 'API para o desafio de venda de carros',
       version: '1.0.0',
     },
     components: {
@@ -54,7 +54,11 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 })
 
-app.register(fastifyCors)
+app.register(fastifyCors, {
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+})
 
 app.register(createAccount)
 app.register(authenticateWithPassword)

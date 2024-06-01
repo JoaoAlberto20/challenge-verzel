@@ -19,7 +19,7 @@ export async function deleteCar(app: FastifyInstance) {
           summary: 'Delete a car',
           security: [{ bearerAuth: [] }],
           params: z.object({
-            idCar: z.string().uuid(),
+            idCar: z.string(),
           }),
           response: {
             204: z.null(),

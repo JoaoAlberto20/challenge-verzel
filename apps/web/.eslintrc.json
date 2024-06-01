@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "@carhub/eslint-config/nextjs"
+  ],
+  "rules": {
+    "react/no-unknown-property": "off",
+    "no-irregular-whitespace": "off",
+    "react/no-unescaped-entities": "off",
+    "no-useless-catch": "off"
+  }
+}

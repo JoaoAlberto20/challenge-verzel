@@ -21,7 +21,7 @@ export async function createCar(app: FastifyInstance) {
           security: [{ bearerAuth: [] }],
           body: z.object({
             name: z.string(),
-            description: z.string(),
+            imageUrl: z.string(),
             brand: z.string(),
             model: z.string(),
             year: z.number(),
@@ -35,9 +35,9 @@ export async function createCar(app: FastifyInstance) {
         await request.getUserAdmin()
         const {
           name,
-          description,
           brand,
           model,
+          imageUrl,
           year,
           location,
           mileage,
@@ -49,7 +49,7 @@ export async function createCar(app: FastifyInstance) {
         const slugAlreadyExits = await prisma.car.findUnique({
           where: {
             slug,
-          },
+          }
         })
 
         if (slugAlreadyExits) {
@@ -59,15 +59,14 @@ export async function createCar(app: FastifyInstance) {
         await prisma.car.create({
           data: {
             name,
-            description,
             brand,
+            imageUrl,
             slug,
-            image_url: '',
             model,
             year,
             location,
             mileage,
-            original_value: originalValue,
+            originalValue: originalValue,
           },
         })
 

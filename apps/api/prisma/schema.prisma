@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id       String @id
+  id       String @id @default(uuid())
   name     String
   email    String @unique
   password String
@@ -25,17 +25,16 @@ model User {
 }
 
 model Car {
-  id             String @id @default(cuid())
-  name           String
-  description    String
-  slug           String @unique
-  brand          String
-  model          String
-  image_url      String
-  year           Int
-  location       String
-  mileage        Int
-  original_value String
+  id            String @id @default(uuid())
+  name          String
+  brand         String
+  model         String
+  slug          String @unique
+  imageUrl      String @map("image_url")
+  year          Int
+  location      String
+  mileage       Int
+  originalValue String @map("original_value")
 
   @@map("cars")
 }
